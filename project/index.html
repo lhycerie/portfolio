@@ -1,23 +1,825 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China De Oro — Portfolio</title>
+    <meta name="description"
+        content="Personal portfolio of China De Oro. Minimalist design, clean code, web engineering & design.">
+
+    <!-- Manrope Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Lenis Smooth Scroll CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+    <!-- Tailwind CSS v4 Browser Build -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>China De Oro - Portfolio</title>
+
+    <!-- GSAP & Lenis Smooth Scroll Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <style>
+        /* Global Font & Color Palette Tokens */
+        :root {
+            --color-c1: #111111;
+            /* Deep Black / Primary Headlines */
+            --color-c2: #333333;
+            /* Dark Charcoal / Main Body Text */
+            --color-c3: #777777;
+            /* Mid Gray / Muted Labels */
+            --color-c4: #BEB8AD;
+            /* Stone Taupe / Accents */
+            --color-c5: #E6E1D7;
+            /* Light Stone / Surfaces */
+            --color-c6: #F6F4EE;
+            /* Warm Off-White / Main Background */
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--color-c6);
+            color: var(--color-c2);
+        }
+
+        /* Discord-Style Footer Big Text Scaling */
+        .big-footer-name {
+            font-size: clamp(3rem, 13.5vw, 18rem);
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+        }
+
+        /* Subtle minimalist scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-c6);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-c4);
+            border-radius: 3px;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-[#F6F4EE] text-[#333333] selection:bg-[#BEB8AD] selection:text-[#111111] min-h-screen flex flex-col">
+
+    <!-- ================================================================= -->
+    <!-- ENLARGED PILL NAVBAR                                              -->
+    <!-- ================================================================= -->
+    <header class="sticky top-0 z-50 px-6 lg:px-16 py-6 flex items-center justify-between pointer-events-none">
+        <!-- Logo / Name -->
+        <a href="#" class="pointer-events-auto flex items-center gap-3 group">
+            <span
+                class="font-extrabold text-2xl tracking-tight text-[#111111] group-hover:opacity-80 transition-opacity">
+                cdo
+            </span>
+        </a>
+
+        <!-- Centered Enlarged Pill Capsule Nav with Blur -->
+        <nav
+            class="pointer-events-auto hidden md:flex items-center gap-10 px-12 py-4 rounded-full bg-[#E6E1D7]/80 backdrop-blur-md shadow-sm text-base font-bold text-[#333333]">
+            <a href="#projects" class="hover:text-[#111111] transition-colors">Projects</a>
+            <a href="#experience" class="hover:text-[#111111] transition-colors">Experience</a>
+            <a href="#graphics" class="hover:text-[#111111] transition-colors">Graphics</a>
+            <a href="#about" class="hover:text-[#111111] transition-colors">About</a>
+        </nav>
+
+        <!-- Right Enlarged Action Button -->
+        <div class="pointer-events-auto">
+            <a href="#contact"
+                class="px-8 py-3.5 rounded-full bg-[#111111] text-[#F6F4EE] hover:bg-[#333333] transition-all text-base font-bold shadow-sm">
+                Contact
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow space-y-16">
+        <!-- ================================================================= -->
+        <!-- HERO SECTION                                                      -->
+        <!-- ================================================================= -->
+        <section class="px-6 lg:px-16 pt-16 pb-12 max-w-7xl mx-auto">
+            <div class="max-w-4xl">
+                <h1
+                    class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-[#111111] tracking-tight leading-[1.08] mb-8">
+                    Crafting clean, intentional digital products &amp; modern web experiences.
+                </h1>
+
+                <p class="text-lg sm:text-xl text-[#333333] leading-relaxed max-w-2xl font-normal">
+                    Hi, I'm <strong class="font-semibold text-[#111111]">China De Oro</strong>. A frontend developer,
+                    UI/UX &amp; graphic designer.
+                </p>
+            </div>
+        </section>
 
 
+        <!-- ================================================================= -->
+        <!-- 1. PROJECTS SECTION                                              -->
+        <!-- ================================================================= -->
+        <section id="projects" class="px-6 lg:px-16 py-12 max-w-7xl mx-auto">
+            <div class="mb-12">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111111]">Featured Projects</h2>
+            </div>
+
+            <!-- 3 Mockup Cards Grid (Borderless & Clean) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+                <!-- ITEM 1: Purpose Pinoy Website -->
+                <article class="group flex flex-col justify-between">
+                    <div>
+                        <!-- Mockup Image Box -->
+                        <div
+                            class="w-full aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden mb-6 flex items-center justify-center p-2 relative group-hover:shadow-md transition-shadow">
+                            <img loading="lazy" decoding="async" src="assets/purpose-pinoy.png"
+                                alt="Purpose Pinoy Mockup"
+                                class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+
+                        <!-- Category Pill -->
+                        <div class="mb-3">
+                            <span
+                                class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333] inline-block">
+                                Non-Profit / Website
+                            </span>
+                        </div>
+
+                        <!-- Title -->
+                        <h3
+                            class="text-2xl font-extrabold text-[#111111] mb-3 group-hover:translate-x-1 transition-transform">
+                            Purpose Pinoy
+                        </h3>
+
+                        <!-- Tech Stack Pills -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Tailwind CSS</span>
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Git / GitHub</span>
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Netlify</span>
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Cloudflare</span>
+                        </div>
+                    </div>
+
+                    <!-- See More Modal Trigger -->
+                    <div>
+                        <button onclick="openProjectModal('modal-purpose-pinoy')"
+                            class="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-xs hover:bg-[#333333] transition-all shadow-sm">
+                            See More
+                        </button>
+                    </div>
+                </article>
+
+                <!-- ITEM 2: iSKOFound Figma UI/UX -->
+                <article class="group flex flex-col justify-between">
+                    <div>
+                        <!-- Mockup Image Box -->
+                        <div
+                            class="w-full aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden mb-6 flex items-center justify-center p-2 relative group-hover:shadow-md transition-shadow">
+                            <img loading="lazy" decoding="async" src="assets/iskofound.png" alt="iSKOFound UI/UX Mockup"
+                                class="w-full h-full object-contain rounded-2xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+
+                        <!-- Category Pill -->
+                        <div class="mb-3">
+                            <span
+                                class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333] inline-block">
+                                Mobile App / UI/UX Design
+                            </span>
+                        </div>
+
+                        <!-- Title -->
+                        <h3
+                            class="text-2xl font-extrabold text-[#111111] mb-3 group-hover:translate-x-1 transition-transform">
+                            iSKOFound
+                        </h3>
+
+                        <!-- Tech Stack Pills -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Figma</span>
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">UI/UX Research</span>
+                        </div>
+                    </div>
+
+                    <!-- See More Modal Trigger -->
+                    <div>
+                        <button onclick="openProjectModal('modal-iskofound')"
+                            class="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-xs hover:bg-[#333333] transition-all shadow-sm">
+                            See More
+                        </button>
+                    </div>
+                </article>
+
+                <!-- ITEM 3: ePDS Portal -->
+                <article class="group flex flex-col justify-between">
+                    <div>
+                        <!-- Mockup Image Box -->
+                        <div
+                            class="w-full aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden mb-6 flex items-center justify-center p-2 relative group-hover:shadow-md transition-shadow">
+                            <img loading="lazy" decoding="async" src="assets/epds.png" alt="ePDS Portal Mockup"
+                                class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+
+                        <!-- Category Pill -->
+                        <div class="mb-3">
+                            <span
+                                class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333] inline-block">
+                                Full-Stack Web App
+                            </span>
+                        </div>
+
+                        <!-- Title -->
+                        <h3
+                            class="text-2xl font-extrabold text-[#111111] mb-3 group-hover:translate-x-1 transition-transform">
+                            ePDS Portal
+                        </h3>
+
+                        <!-- Tech Stack Pills -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">HTML / CSS / JS</span>
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Node.js / Express</span>
+                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">MySQL</span>
+                        </div>
+                    </div>
+
+                    <!-- See More Modal Trigger -->
+                    <div>
+                        <button onclick="openProjectModal('modal-epds')"
+                            class="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-xs hover:bg-[#333333] transition-all shadow-sm">
+                            See More
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================= -->
+        <!-- 2. ROLES SECTION                                    -->
+        <!-- ================================================================= -->
+        <section id="experience" class="px-6 lg:px-16 py-12 max-w-7xl mx-auto">
+            <div class="mb-12">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111111]">Roles</h2>
+            </div>
+
+            <div class="space-y-8">
+                <!-- ROLE ITEM 1 -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h4 class="text-2xl font-extrabold text-[#111111]">Visual/Graphics Head</h4>
+                        <p class="text-base text-[#777777] font-medium mt-0.5">PUP CCIS Student Council</p>
+                    </div>
+                    <span
+                        class="self-start sm:self-auto px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-[#E6E1D7] text-[#333333]">
+                        March 2026 - Present
+                    </span>
+                </div>
+
+                <!-- ROLE ITEM 2 -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h4 class="text-2xl font-extrabold text-[#111111]">IT Head &amp; FrontEnd Developer</h4>
+                        <p class="text-base text-[#777777] font-medium mt-0.5">Purpose Pinoy</p>
+                    </div>
+                    <span
+                        class="self-start sm:self-auto px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-[#E6E1D7] text-[#333333]">
+                        November 2025 - Present
+                    </span>
+                </div>
+
+                <!-- ROLE ITEM 3 -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h4 class="text-2xl font-extrabold text-[#111111]">Graphic Designer</h4>
+                        <p class="text-base text-[#777777] font-medium mt-0.5">Amazon Web Services (AWS) Cloud Club PUP
+                        </p>
+                    </div>
+                    <span
+                        class="self-start sm:self-auto px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-[#E6E1D7] text-[#333333]">
+                        October 2025 - Present
+                    </span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================================= -->
+        <!-- 3. GRAPHICS SECTION                                              -->
+        <!-- ================================================================= -->
+        <section id="graphics" class="py-16 overflow-hidden w-full">
+            <div class="px-6 lg:px-16 max-w-7xl mx-auto mb-10">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111111]">Graphics &amp; Visual Design</h2>
+            </div>
+
+            <!-- 2-Grid System Horizontal Track -->
+            <div class="relative w-full overflow-hidden py-4">
+                <div class="graphics-marquee-container flex flex-col gap-6 sm:gap-8 w-max">
+
+                    <!-- ROW 1 -->
+                    <div class="graphics-row-1 flex gap-6 sm:gap-8 items-center">
+                        <!-- Image 1: Women in STEM -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-1.jpg" alt="Women in STEM"
+                                class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">Women in STEM</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 6: Meet the Performers Banner -->
+                        <div
+                            class="h-64 sm:h-80 aspect-[16/9] bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-6.png"
+                                alt="Meet the Performers — CCISalubong 2026"
+                                class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">Meet the Performers</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 2: Happy Birthday Pubmat -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-2.jpg"
+                                alt="Happy Birthday Pubmat" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">Happy Birthday Pubmat</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 4: March Lotus Calendar -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-4.jpg"
+                                alt="March Lotus Calendar" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">March Lotus Calendar</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 3: AWS Cloud Clubs -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-3.jpg"
+                                alt="AWS Cloud Clubs Onboarding" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">AWS Cloud Clubs</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 8: SAMASA CCIS Banner -->
+                        <div
+                            class="h-64 sm:h-80 aspect-[16/9] bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-8.png"
+                                alt="Vote Straight SAMASA CCIS" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">SAMASA CCIS Elections</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 5: Tala and Sinag -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-5.jpg"
+                                alt="Introducing Tala and Sinag" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">Tala and Sinag</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROW 2 -->
+                    <div class="graphics-row-2 flex gap-6 sm:gap-8 items-center">
+                        <!-- Image 4: March Lotus Calendar -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-4.jpg"
+                                alt="March Lotus Calendar" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">March Lotus Calendar</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 5: Tala and Sinag -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-5.jpg"
+                                alt="Introducing Tala and Sinag" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">Tala and Sinag</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 3: AWS Cloud Clubs -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-3.jpg"
+                                alt="AWS Cloud Clubs Onboarding" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">AWS Cloud Clubs</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 7: HackManila 2026 Banner -->
+                        <div
+                            class="h-64 sm:h-80 aspect-[16/9] bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-7.png"
+                                alt="HackManila 2026 Community Nights" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">HackManila 2026 Primer</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 1: Women in STEM -->
+                        <div
+                            class="h-64 sm:h-80 aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-1.jpg" alt="Women in STEM"
+                                class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">Women in STEM</span>
+                            </div>
+                        </div>
+
+                        <!-- Image 9: AFK Event Highlights Banner -->
+                        <div
+                            class="h-64 sm:h-80 aspect-[16/9] bg-[#E6E1D7] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex-shrink-0 group relative">
+                            <img loading="lazy" decoding="async" src="assets/graphics/graphic-9.png"
+                                alt="AFK Event Highlights" class="w-full h-full object-cover rounded-3xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <span class="text-[#F6F4EE] font-extrabold text-lg">AFK Event Highlights</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- See More Button linking to graphics.html page -->
+                <div class="mt-10 text-center relative z-10">
+                    <a href="graphics.html"
+                        class="inline-flex items-center gap-1.5 px-8 py-3.5 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-sm hover:bg-[#333333] transition-all shadow-md hover:scale-105 active:scale-95">
+                        See More
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================= -->
+        <!-- 4. ABOUT SECTION                                                 -->
+        <!-- ================================================================= -->
+        <section id="about" class="px-6 lg:px-16 py-12 max-w-7xl mx-auto">
+            <div class="max-w-3xl">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111111] mb-6">Who is Me?</h2>
+
+                <div class="space-y-4 text-base sm:text-lg text-[#333333] leading-relaxed">
+                    <p>
+                        I believe good software is like good architecture—functional, enduring, and refined down to
+                        its essential form.
+                    </p>
+                    <p>
+                        With a strong emphasis on modern typography, clean code standards, and seamless user
+                        experiences, I build digital products that prioritize speed, clarity, and precision.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================================= -->
+        <!-- CONTACT CTA SECTION                                               -->
+        <!-- ================================================================= -->
+        <section id="contact" class="px-6 lg:px-16 py-24 max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111111] mt-2 mb-6 tracking-tight">
+                Let's work together.
+            </h2>
+            <p class="text-base sm:text-lg text-[#777777] max-w-xl mx-auto mb-10">
+                Have a new project, an open role, or just want to connect? My inbox is always open.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="mailto:chinadeoro86@gmail.com"
+                    class="w-full sm:w-auto px-8 py-4 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-base hover:bg-[#333333] transition-all shadow-md">
+                    Send an Email
+                </a>
+                <a href="https://docs.google.com/document/d/1XfqsxC9pa2fqTujdYsi4zwqzz6N1YO5khrbL4adXYJo/edit?usp=sharing"
+                    target="_blank" rel="noopener noreferrer"
+                    class="w-full sm:w-auto px-8 py-4 rounded-full bg-[#E6E1D7] text-[#111111] font-bold text-base hover:bg-[#BEB8AD]/50 transition-all">
+                    Resume
+                </a>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ================================================================= -->
+    <!-- FOOTER                                                            -->
+    <!-- ================================================================= -->
+    <footer class="bg-[#E6E1D7] pt-16 pb-8 px-6 lg:px-16 flex flex-col justify-between overflow-hidden">
+
+        <!-- Top Footer Navigation & Socials -->
+        <div
+            class="max-w-7xl w-full mx-auto flex flex-row justify-center items-start gap-16 sm:gap-32 mb-16 text-center">
+            <!-- Column 1: Navigation -->
+            <div class="flex flex-col items-center">
+                <h5 class="text-xs font-bold uppercase tracking-wider text-[#777777] mb-4 text-center">Navigation</h5>
+                <ul class="space-y-2.5 text-sm font-semibold text-[#111111] flex flex-col items-center">
+                    <li><a href="#projects" class="hover:text-[#777777] transition-colors">Projects</a></li>
+                    <li><a href="#experience" class="hover:text-[#777777] transition-colors">Experience</a></li>
+                    <li><a href="#graphics" class="hover:text-[#777777] transition-colors">Graphics</a></li>
+                    <li><a href="#about" class="hover:text-[#777777] transition-colors">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 2: Social Links -->
+            <div class="flex flex-col items-center">
+                <h5 class="text-xs font-bold uppercase tracking-wider text-[#777777] mb-4 text-center">Social</h5>
+                <ul class="space-y-2.5 text-sm font-semibold text-[#111111] flex flex-col items-center">
+                    <li><a href="https://github.com/lhycerie" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-[#777777] transition-colors flex items-center justify-center gap-1">GitHub
+                            ↗</a></li>
+                    <li><a href="https://www.linkedin.com/in/china-de-oro/" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-[#777777] transition-colors flex items-center justify-center gap-1">LinkedIn
+                            ↗</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- footer wordmark -->
+        <div class="w-full text-center pt-8 pb-4 select-none overflow-hidden">
+            <h1
+                class="big-footer-name font-black tracking-tighter text-[#111111] leading-none whitespace-nowrap lowercase">
+                china de oro
+            </h1>
+        </div>
+
+        <!-- Copyright Bar -->
+        <div
+            class="max-w-7xl w-full mx-auto flex items-center justify-center pt-6 text-xs font-mono text-[#777777] text-center">
+            <span>&copy; 2026 China De Oro. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Toast Notification for Copying Email -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 bg-[#111111] text-[#F6F4EE] px-5 py-3 rounded-xl text-sm font-medium shadow-xl opacity-0 pointer-events-none transition-all duration-300 transform translate-y-2">
+        Email address copied to clipboard!
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- PROJECT DETAIL MODALS                                             -->
+    <!-- ================================================================= -->
+
+    <!-- MODAL 1: Purpose Pinoy -->
+    <div id="modal-purpose-pinoy" data-lenis-prevent
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div data-lenis-prevent
+            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#BEB8AD]/40 transform scale-95 transition-all duration-300">
+            <button onclick="closeProjectModal('modal-purpose-pinoy')"
+                class="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#E6E1D7] flex items-center justify-center font-bold text-[#111111] hover:bg-[#111111] hover:text-[#F6F4EE] transition-all">✕</button>
+            <div class="mb-3">
+                <span
+                    class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333]">Non-Profit
+                    / Website</span>
+            </div>
+            <h3 class="text-3xl font-extrabold text-[#111111] mb-4">Purpose Pinoy</h3>
+            <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[#E6E1D7]">
+                <img src="assets/purpose-pinoy.png" alt="Purpose Pinoy Mockup" class="w-full h-full object-cover">
+            </div>
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Tailwind CSS</span>
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Git / GitHub</span>
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Netlify</span>
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Cloudflare</span>
+            </div>
+            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp; Architecture</h4>
+            <ul class="space-y-3 text-sm text-[#333333] mb-8 leading-relaxed">
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>Deployment architecture, CI/CD pipelines, and domain configuration.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>SSL/TLS lifecycle, HTTP security headers, and email routing.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>UI/UX and responsive front-end development.</span>
+                </li>
+            </ul>
+            <a href="https://purposepinoy.org/" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-sm hover:bg-[#333333] transition-all shadow-md">Visit
+                Purpose Pinoy Website ↗</a>
+        </div>
+    </div>
+
+    <!-- MODAL 2: iSKOFound -->
+    <div id="modal-iskofound" data-lenis-prevent
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div data-lenis-prevent
+            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#BEB8AD]/40 transform scale-95 transition-all duration-300">
+            <button onclick="closeProjectModal('modal-iskofound')"
+                class="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#E6E1D7] flex items-center justify-center font-bold text-[#111111] hover:bg-[#111111] hover:text-[#F6F4EE] transition-all">✕</button>
+            <div class="mb-3">
+                <span
+                    class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333]">Mobile
+                    App / UI/UX Design</span>
+            </div>
+            <h3 class="text-3xl font-extrabold text-[#111111] mb-4">iSKOFound Mobile UI/UX</h3>
+            <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[#E6E1D7]">
+                <img src="assets/iskofound.png" alt="iSKOFound Mockup" class="w-full h-full object-contain">
+            </div>
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Figma</span>
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">UI/UX Research</span>
+            </div>
+            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp; Design Process</h4>
+            <ul class="space-y-3 text-sm text-[#333333] mb-8 leading-relaxed">
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>WBS/Scrumfall lead project manager and lead UI/UX designer.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>80+ high fidelity screens for the lost-and-found app.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>UX research, user personas, and WCAG accessibility compliance.</span>
+                </li>
+            </ul>
+            <a href="https://www.figma.com/design/6d7gkHYTHNXRh6M5TPlm5C/iSKOFound---Group-4?node-id=20-8&t=bHCpUucmgSFpxTCG-1"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-sm hover:bg-[#333333] transition-all shadow-md">Open
+                Figma Prototype ↗</a>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ePDS Portal -->
+    <div id="modal-epds" data-lenis-prevent
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div data-lenis-prevent
+            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#BEB8AD]/40 transform scale-95 transition-all duration-300">
+            <button onclick="closeProjectModal('modal-epds')"
+                class="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#E6E1D7] flex items-center justify-center font-bold text-[#111111] hover:bg-[#111111] hover:text-[#F6F4EE] transition-all">✕</button>
+            <div class="mb-3">
+                <span
+                    class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333]">Full-Stack
+                    Web App</span>
+            </div>
+            <h3 class="text-3xl font-extrabold text-[#111111] mb-4">ePDS Portal</h3>
+            <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[#E6E1D7]">
+                <img src="assets/epds.png" alt="ePDS Portal Mockup" class="w-full h-full object-cover">
+            </div>
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">HTML / CSS / JS</span>
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Node.js / Express</span>
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">MySQL</span>
+            </div>
+            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp; Full-Stack Architecture</h4>
+            <ul class="space-y-3 text-sm text-[#333333] mb-8 leading-relaxed">
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>Full-stack web application.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>Frontend designer with form validation and session storage.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>Backend server featuring custom JWT authentication middleware and dynamic binary excel generation.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="text-[#111111] font-extrabold mt-0.5">•</span>
+                    <span>Automated SQL migrations and connection pool.</span>
+                </li>
+            </ul>
+            <a href="https://epdsportal.vercel.app/" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-sm hover:bg-[#333333] transition-all shadow-md">Visit
+                ePDS Portal ↗</a>
+        </div>
+    </div>
+
+    <!-- Script for interactions -->
+    <script>
+        // Project Modal Handlers
+        function openProjectModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                if (typeof lenis !== 'undefined' && lenis) lenis.stop();
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-100');
+                const dialog = modal.querySelector('div');
+                if (dialog) {
+                    dialog.classList.remove('scale-95');
+                    dialog.classList.add('scale-100');
+                }
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeProjectModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                if (typeof lenis !== 'undefined' && lenis) lenis.start();
+                modal.classList.remove('opacity-100');
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                const dialog = modal.querySelector('div');
+                if (dialog) {
+                    dialog.classList.remove('scale-100');
+                    dialog.classList.add('scale-95');
+                }
+                document.body.style.overflow = '';
+            }
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target.id && e.target.id.startsWith('modal-')) {
+                closeProjectModal(e.target.id);
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                ['modal-purpose-pinoy', 'modal-iskofound', 'modal-epds'].forEach(closeProjectModal);
+            }
+        });
+
+        // Initialize Lenis Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            touchMultiplier: 2
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // GSAP ScrollTrigger Integration with Lenis
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+
+            // Left-to-Right Horizontal Glide Movement for the 2-Grid System Graphics
+            gsap.fromTo(".graphics-row-1",
+                { x: -300 },
+                {
+                    x: 80,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#graphics",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                }
+            );
+
+            gsap.fromTo(".graphics-row-2",
+                { x: -550 },
+                {
+                    x: -80,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#graphics",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1.4
+                    }
+                }
+            );
+        }
+    </script>
 </body>
-
-<footer>
-    <h1 class="text-3xl">China De Oro</h1>
-    <h3 class="text-xl">Portfolio</h3>
-    <p class="text-sm">Copyright &copy; 2026</p>
-</footer>
 
 </html>
