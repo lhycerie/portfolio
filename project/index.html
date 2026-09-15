@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" style="scroll-padding-top: 100px;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>China De Oro — Portfolio</title>
+    <title>China De Oro</title>
     <meta name="description"
         content="Personal portfolio of China De Oro. Minimalist design, clean code, web engineering & design.">
 
@@ -17,13 +17,18 @@
     <!-- Lenis Smooth Scroll CSS -->
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
 
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- Tailwind CSS v4 Browser Build -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- GSAP & Lenis Smooth Scroll Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
     <style>
         /* Global Font & Color Palette Tokens */
@@ -44,7 +49,7 @@
 
         body {
             font-family: 'Manrope', sans-serif;
-            background-color: var(--color-c6);
+            background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F3 350px, #F6F4EE 850px) no-repeat, #F6F4EE;
             color: var(--color-c2);
         }
 
@@ -68,17 +73,75 @@
             background: var(--color-c4);
             border-radius: 3px;
         }
+
+        /* Statement Section - Scroll Reveal Words */
+        .statement-word {
+            display: inline-block;
+            opacity: 0.12;
+            transition: opacity 0.1s ease, color 0.15s ease;
+        }
+
+        /* Hero Puzzle Grid (5x5 enlarged) */
+        #hero-puzzle-grid {
+            background-image:
+                linear-gradient(to right, rgba(190, 184, 173, 0.3) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(190, 184, 173, 0.3) 1px, transparent 1px);
+            background-size: 68px 68px;
+            border: 1px solid rgba(190, 184, 173, 0.28);
+            border-radius: 16px;
+        }
+
+        .grid-target {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 2px dashed rgba(160, 150, 135, 0.75);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .grid-circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #c4bfb5, #BEB8AD);
+            border-radius: 50%;
+            cursor: grab;
+            z-index: 2;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            touch-action: none;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .grid-circle:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid-circle:active {
+            cursor: grabbing;
+        }
+
+        .grid-circle.matched {
+            background: linear-gradient(135deg, #d4cfc6, #BEB8AD);
+            box-shadow: 0 0 16px rgba(190, 184, 173, 0.7);
+        }
     </style>
 </head>
 
 <body class="bg-[#F6F4EE] text-[#333333] selection:bg-[#BEB8AD] selection:text-[#111111] min-h-screen flex flex-col">
 
     <!-- ================================================================= -->
-    <!-- ENLARGED PILL NAVBAR                                              -->
+    <!-- ENLARGED PILL NAVBAR & HEADER W SCROLL BLUR                     -->
     <!-- ================================================================= -->
-    <header class="sticky top-0 z-50 px-6 lg:px-16 py-6 flex items-center justify-between pointer-events-none">
+    <header
+        class="sticky top-0 z-50 px-6 lg:px-16 py-4 sm:py-5 flex items-center justify-between transition-all duration-300 relative">
+        <!-- Smooth Fading Backdrop Blur (No hard rectangle or box edge) -->
+        <div
+            class="absolute inset-x-0 top-0 -bottom-6 -z-10 bg-[#F6F4EE]/85 backdrop-blur-md pointer-events-none [mask-image:linear-gradient(to_bottom,black_30%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_30%,transparent_100%)]">
+        </div>
         <!-- Logo / Name -->
-        <a href="#" class="pointer-events-auto flex items-center gap-3 group">
+        <a href="#" class="flex items-center gap-3 group">
             <span
                 class="font-extrabold text-2xl tracking-tight text-[#111111] group-hover:opacity-80 transition-opacity">
                 cdo
@@ -87,173 +150,483 @@
 
         <!-- Centered Enlarged Pill Capsule Nav with Blur -->
         <nav
-            class="pointer-events-auto hidden md:flex items-center gap-10 px-12 py-4 rounded-full bg-[#E6E1D7]/80 backdrop-blur-md shadow-sm text-base font-bold text-[#333333]">
+            class="hidden md:flex items-center gap-10 px-12 py-3.5 rounded-full bg-[#E6E1D7]/90 backdrop-blur-md shadow-xs text-base font-bold text-[#333333]">
+            <a href="#about" class="hover:text-[#111111] transition-colors">About</a>
             <a href="#projects" class="hover:text-[#111111] transition-colors">Projects</a>
             <a href="#experience" class="hover:text-[#111111] transition-colors">Experience</a>
             <a href="#graphics" class="hover:text-[#111111] transition-colors">Graphics</a>
-            <a href="#about" class="hover:text-[#111111] transition-colors">About</a>
         </nav>
 
-        <!-- Right Enlarged Action Button -->
-        <div class="pointer-events-auto">
+        <!-- Right Action Button & Mobile Menu Trigger -->
+        <div class="flex items-center gap-3">
             <a href="#contact"
-                class="px-8 py-3.5 rounded-full bg-[#111111] text-[#F6F4EE] hover:bg-[#333333] transition-all text-base font-bold shadow-sm">
+                class="px-6 sm:px-8 py-3 rounded-full bg-[#111111] text-[#F6F4EE] hover:bg-[#333333] transition-all text-sm sm:text-base font-bold shadow-sm">
                 Contact
             </a>
+            <!-- Mobile Menu Bar Button -->
+            <button onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-[#E6E1D7] text-[#111111] font-bold hover:bg-[#111111] hover:text-[#F6F4EE] transition-all shadow-xs">
+                <i class="fa-solid fa-bars text-base"></i>
+            </button>
         </div>
     </header>
 
-    <main class="flex-grow space-y-16">
-        <!-- ================================================================= -->
-        <!-- HERO SECTION                                                      -->
-        <!-- ================================================================= -->
-        <section class="px-6 lg:px-16 pt-16 pb-12 max-w-7xl mx-auto">
-            <div class="max-w-4xl">
-                <h1
-                    class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-[#111111] tracking-tight leading-[1.08] mb-8">
-                    Crafting clean, intentional digital products &amp; modern web experiences.
-                </h1>
+    <!-- Mobile Menu Slide-in Drawer -->
+    <div id="mobile-menu-drawer" data-lenis-prevent
+        class="fixed inset-0 z-[60] flex justify-end opacity-0 pointer-events-none transition-opacity duration-300">
+        <!-- Backdrop Overlay -->
+        <div onclick="toggleMobileMenu()" class="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
 
-                <p class="text-lg sm:text-xl text-[#333333] leading-relaxed max-w-2xl font-normal">
-                    Hi, I'm <strong class="font-semibold text-[#111111]">China De Oro</strong>. A frontend developer,
-                    UI/UX &amp; graphic designer.
-                </p>
+        <!-- Drawer Panel -->
+        <div id="mobile-menu-panel"
+            class="relative w-4/5 max-w-xs h-full bg-[#F6F4EE] shadow-2xl p-8 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out z-10">
+            <div>
+                <!-- Header inside drawer -->
+                <div class="flex items-center justify-between mb-10">
+                    <span class="font-extrabold text-2xl tracking-tight text-[#111111]">cdo</span>
+                    <button onclick="toggleMobileMenu()" aria-label="Close Navigation Menu"
+                        class="w-9 h-9 rounded-full bg-[#E6E1D7] flex items-center justify-center text-[#111111] font-bold hover:bg-[#111111] hover:text-[#F6F4EE] transition-all">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Navigation Choices -->
+                <nav class="flex flex-col gap-6 text-xl font-extrabold text-[#111111]">
+                    <a href="#about" onclick="toggleMobileMenu()"
+                        class="hover:translate-x-2 transition-transform">About</a>
+                    <a href="#projects" onclick="toggleMobileMenu()"
+                        class="hover:translate-x-2 transition-transform">Projects</a>
+                    <a href="#experience" onclick="toggleMobileMenu()"
+                        class="hover:translate-x-2 transition-transform">Experience</a>
+                    <a href="#graphics" onclick="toggleMobileMenu()"
+                        class="hover:translate-x-2 transition-transform">Graphics</a>
+                    <a href="#contact" onclick="toggleMobileMenu()"
+                        class="hover:translate-x-2 transition-transform">Contact</a>
+                </nav>
+            </div>
+
+            <!-- Footer info inside drawer -->
+            <div class="pt-8">
+                <p class="text-xs font-bold text-[#111111]">China De Oro</p>
+                <p class="text-xs text-[#777777] mt-0.5">Web Developer &amp; UI/UX Designer</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow space-y-12 sm:space-y-16">
+        <!-- ================================================================= -->
+        <!-- HERO SECTION (Full Viewport Height with Edge-to-Edge Layout)    -->
+        <!-- ================================================================= -->
+        <section
+            class="relative min-h-[calc(100dvh-80px)] flex flex-col justify-end px-6 lg:px-16 pb-10 sm:pb-14 w-full">
+            <div class="w-full flex items-end justify-between gap-6">
+                <!-- Left: hi, i'm + china de oro -->
+                <div>
+                    <p id="hero-greeting" class="text-base font-medium text-[#777777] tracking-wide mb-1.5 opacity-0">
+                        hi, i'm</p>
+                    <h1 id="hero-name"
+                        class="text-6xl sm:text-8xl lg:text-[9.5rem] font-black text-[#111111] tracking-tighter leading-[0.88] lowercase select-none opacity-0">
+                        china<br>de oro
+                    </h1>
+                </div>
+                <!-- Right: web developer & ui/ux designer -->
+                <div id="hero-role" class="text-right mb-1 sm:mb-2 opacity-0">
+                    <p class="text-sm sm:text-lg font-semibold text-[#777777] uppercase tracking-wider leading-snug">
+                        web developer<br>&amp; ui/ux designer
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Puzzle Grid (Top Right) - 5x5 Board -->
+            <div id="hero-puzzle" class="absolute top-12 right-6 lg:right-16 hidden md:block select-none opacity-0 z-10"
+                style="width: 341px; height: 420px;">
+                <div id="hero-puzzle-grid" class="relative" style="width: 341px; height: 341px;"></div>
             </div>
         </section>
 
+        <!-- ================================================================= -->
+        <!-- STATEMENT SECTION (Before Who is Me?)                            -->
+        <!-- ================================================================= -->
+        <section id="statement"
+            class="min-h-screen flex items-center justify-center px-6 lg:px-16 py-20 relative overflow-hidden">
+            <h2 id="statement-text"
+                class="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-[#111111] tracking-tight leading-[1.1] text-center max-w-6xl select-none relative z-10">
+            </h2>
+            <!-- Cursor Proximity Circle Effect -->
+            <div id="craft-cursor-circle"
+                class="pointer-events-none fixed rounded-full opacity-0 transition-opacity duration-300 z-0"
+                style="width: 260px; height: 260px; transform: translate(-50%, -50%); display: none;">
+            </div>
+        </section>
 
         <!-- ================================================================= -->
-        <!-- 1. PROJECTS SECTION                                              -->
+        <!-- 1. ABOUT SECTION                                                 -->
         <!-- ================================================================= -->
-        <section id="projects" class="px-6 lg:px-16 py-12 max-w-7xl mx-auto">
-            <div class="mb-12">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111111]">Featured Projects</h2>
+        <section id="about" class="px-6 lg:px-16 py-12 max-w-7xl mx-auto">
+            <!-- Bio & Photo Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start mb-14 max-w-5xl mx-auto">
+                <!-- Left: Bio Text & Desktop Button -->
+                <div class="md:col-span-7 space-y-5">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111111]">Who is Me?</h2>
+
+                    <div class="space-y-4 text-base sm:text-lg text-[#333333] leading-relaxed">
+                        <p>
+                            I'm China <i class="font-normal italic">(tsi-na)</i>, a web developer and designer
+                            passionate about building software that makes a difference.
+                        </p>
+                        <p>
+                            I focus on creating clean, user-friendly and seamless <strong
+                                class="font-semibold text-[#111111]">UI/UX</strong>,
+                            prioritizing functionality, clarity, and precision in every project. I also <strong
+                                class="font-semibold text-[#111111]">lead teams</strong> of
+                            designers and developers to create comprehensive digital solutions.
+                        </p>
+                    </div>
+
+                    <!-- Button visible on Desktop (Right below text) -->
+                    <div class="hidden md:block pt-2">
+                        <a href="moreaboutme.html"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111111] text-[#F6F4EE] hover:bg-[#333333] transition-all text-xs sm:text-sm font-bold shadow-xs group">
+                            <span>More about me</span>
+                            <i
+                                class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Profile Picture of China & Mobile Button -->
+                <div class="md:col-span-5 flex flex-col items-center md:items-end w-full">
+                    <div class="relative max-w-[240px] sm:max-w-[280px] w-full">
+                        <div
+                            class="overflow-hidden rounded-3xl shadow-md bg-[#E6E1D7] hover:scale-[1.02] transition-transform duration-300">
+                            <img src="assets/china.jpg" alt="China De Oro"
+                                class="w-full h-auto object-cover rounded-3xl" />
+                        </div>
+                    </div>
+
+                    <!-- Button visible on Mobile (Right below photo) -->
+                    <div class="block md:hidden pt-5 text-center w-full">
+                        <a href="moreaboutme.html"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111111] text-[#F6F4EE] hover:bg-[#333333] transition-all text-xs sm:text-sm font-bold shadow-xs group">
+                            <span>More about me</span>
+                            <i
+                                class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <!-- 3 Mockup Cards Grid (Borderless & Clean) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Feature Cards (Smaller & Compact - Centered, not full-width on mobile) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 mb-12 max-w-5xl mx-auto justify-items-center">
 
-                <!-- ITEM 1: Purpose Pinoy Website -->
-                <article class="group flex flex-col justify-between">
-                    <div>
-                        <!-- Mockup Image Box -->
-                        <div
-                            class="w-full aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden mb-6 flex items-center justify-center p-2 relative group-hover:shadow-md transition-shadow">
-                            <img loading="lazy" decoding="async" src="assets/purpose-pinoy.png"
-                                alt="Purpose Pinoy Mockup"
-                                class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300">
-                        </div>
+                <!-- Card 1: Development Stack -->
+                <div
+                    class="bg-[#E6E1D7] rounded-2xl p-5 flex flex-col items-center text-center shadow-xs hover:shadow-md transition-all duration-300 w-full max-w-[280px] sm:max-w-none">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-[#BEB8AD]/40 flex items-center justify-center mb-3 text-[#111111]">
+                        <i class="fa-solid fa-code text-lg"></i>
+                    </div>
+                    <h3 class="text-base font-extrabold text-[#111111] mb-1">Web Development</h3>
+                    <p class="text-xs font-bold text-[#333333]">Full-Stack &amp; Frontend</p>
+                    <p class="text-[11px] text-[#777777] font-medium mt-1">HTML, CSS, Tailwind, MySQL, Python</p>
+                </div>
 
-                        <!-- Category Pill -->
-                        <div class="mb-3">
+                <!-- Card 2: Design & Media -->
+                <div
+                    class="bg-[#E6E1D7] rounded-2xl p-5 flex flex-col items-center text-center shadow-xs hover:shadow-md transition-all duration-300 w-full max-w-[280px] sm:max-w-none">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-[#BEB8AD]/40 flex items-center justify-center mb-3 text-[#111111]">
+                        <i class="fa-solid fa-compass-drafting text-lg"></i>
+                    </div>
+                    <h3 class="text-base font-extrabold text-[#111111] mb-1">UI/UX &amp; Design</h3>
+                    <p class="text-xs font-bold text-[#333333]">Digital Product &amp; Media</p>
+                    <p class="text-[11px] text-[#777777] font-medium mt-1">Figma, Canva, Photoshop, Illustrator</p>
+                </div>
+
+                <!-- Card 3: Project Management -->
+                <div
+                    class="bg-[#E6E1D7] rounded-2xl p-5 flex flex-col items-center text-center shadow-xs hover:shadow-md transition-all duration-300 w-full max-w-[280px] sm:max-w-none">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-[#BEB8AD]/40 flex items-center justify-center mb-3 text-[#111111]">
+                        <i class="fa-solid fa-briefcase text-lg"></i>
+                    </div>
+                    <h3 class="text-base font-extrabold text-[#111111] mb-1">Project Management</h3>
+                    <p class="text-xs font-bold text-[#333333]">Project Manager</p>
+                    <p class="text-[11px] text-[#777777] font-medium mt-1">WBS, Waterfall, Notion, Kanban</p>
+                </div>
+            </div>
+
+            <!-- Tools & Tech Stacks (Centered Layout) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 pt-4 max-w-5xl mx-auto">
+                <!-- Section 1 (Left): Tech Stack -->
+                <div class="flex flex-col items-center text-center">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-[#111111] mb-6">Tech Stack</h3>
+                    <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+                        <!-- HTML -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-brands fa-html5 text-4xl sm:text-5xl text-[#E34F26]"></i>
+                            </div>
                             <span
-                                class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333] inline-block">
-                                Non-Profit / Website
-                            </span>
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">HTML</span>
                         </div>
+                        <!-- CSS -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-brands fa-css3-alt text-4xl sm:text-5xl text-[#1572B6]"></i>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">CSS</span>
+                        </div>
+                        <!-- Tailwind -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.336 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19.2 12.001 19.2c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z"
+                                        fill="#38BDF8" />
+                                </svg>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">Tailwind</span>
+                        </div>
+                        <!-- MySQL -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-database text-4xl sm:text-5xl text-[#00758F]"></i>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">MySQL</span>
+                        </div>
+                        <!-- Python -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-brands fa-python text-4xl sm:text-5xl text-[#3776AB]"></i>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">Python</span>
+                        </div>
+                    </div>
+                </div>
 
-                        <!-- Title -->
-                        <h3
-                            class="text-2xl font-extrabold text-[#111111] mb-3 group-hover:translate-x-1 transition-transform">
-                            Purpose Pinoy
-                        </h3>
+                <!-- Section 2 (Right): Tools I Use -->
+                <div class="flex flex-col items-center text-center">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-[#111111] mb-6">Tools I Use</h3>
+                    <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+                        <!-- Figma -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-brands fa-figma text-4xl sm:text-5xl text-[#F24E1E]"></i>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">Figma</span>
+                        </div>
+                        <!-- GitHub -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-brands fa-github text-4xl sm:text-5xl text-[#111111]"></i>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">GitHub</span>
+                        </div>
+                        <!-- Photoshop -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <div
+                                    class="w-10 h-10 sm:w-12 sm:h-12 bg-[#001E36] rounded-xl flex items-center justify-center font-black text-lg sm:text-xl text-[#31A8FF] shadow-xs">
+                                    Ps
+                                </div>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">Photoshop</span>
+                        </div>
+                        <!-- Illustrator -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <div
+                                    class="w-10 h-10 sm:w-12 sm:h-12 bg-[#330000] rounded-xl flex items-center justify-center font-black text-lg sm:text-xl text-[#FF9A00] shadow-xs">
+                                    Ai
+                                </div>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">Illustrator</span>
+                        </div>
+                        <!-- VS Code -->
+                        <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                            <div
+                                class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="#007ACC">
+                                    <path
+                                        d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.12a.999.999 0 0 0-1.276.06L.327 7.27a1 1 0 0 0-.056 1.442l4.37 4.308-4.37 4.308a1 1 0 0 0 .056 1.442l1.322 1.2a1 1 0 0 0 1.276.06l4.12-3.12 9.46 8.63a1.49 1.49 0 0 0 1.705.29l4.94-2.377A1.5 1.5 0 0 0 24 22.16V3.84a1.5 1.5 0 0 0-.85-1.253zM18 19.5l-8-7.5 8-7.5v15z" />
+                                </svg>
+                            </div>
+                            <span
+                                class="text-xs font-bold text-[#333333] group-hover:text-[#111111] transition-colors">VS
+                                Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- GitHub Contributions (Centered, Rounded Squares) -->
+            <div class="mt-16 mb-8 max-w-5xl mx-auto overflow-x-auto py-4 flex flex-col items-center justify-center">
+                <a href="https://github.com/lhycerie" target="_blank" rel="noopener noreferrer"
+                    title="View github.com/lhycerie" class="w-full max-w-4xl group block">
+                    <div id="github-chart-container"
+                        class="w-full flex justify-center items-center min-h-[130px] group-hover:opacity-85 transition-opacity">
+                        <img src="https://ghchart.rshah.org/111111/lhycerie" alt="GitHub Contribution Graph @lhycerie"
+                            class="w-full min-w-[650px] h-auto object-contain mx-auto" />
+                    </div>
+                </a>
+            </div>
+        </section>
 
-                        <!-- Tech Stack Pills -->
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Tailwind CSS</span>
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Git / GitHub</span>
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Netlify</span>
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Cloudflare</span>
+        <!-- ================================================================= -->
+        <!-- 2. PROJECTS SECTION                                              -->
+        <!-- ================================================================= -->
+        <section id="projects" class="px-6 lg:px-16 py-12 max-w-7xl mx-auto">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-[#111111] tracking-tight">Projects</h2>
+            </div>
+
+            <!-- Projects Grid (2 Top, 1 Bottom) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+
+                <!-- ITEM 1: iSKOFound Figma UI/UX (Top Left) -->
+                <article class="group flex flex-col cursor-pointer" onclick="openProjectModal('modal-iskofound')">
+                    <!-- Mockup Preview Box -->
+                    <div
+                        class="w-full aspect-[4/3] bg-[#E6E1D7] rounded-3xl overflow-hidden p-4 sm:p-6 flex items-center justify-center relative shadow-xs group-hover:shadow-md transition-all duration-300">
+                        <!-- Curved Black Inner Frame -->
+                        <div
+                            class="w-full h-full bg-[#111111] rounded-2xl p-2 sm:p-3 flex items-center justify-center overflow-hidden shadow-md">
+                            <img loading="lazy" decoding="async" src="assets/proj/iskofound.gif"
+                                alt="iSKOFound UI/UX Mockup"
+                                class="w-full h-full object-contain rounded-xl group-hover:scale-[1.03] transition-transform duration-500 ease-out">
                         </div>
                     </div>
 
-                    <!-- See More Modal Trigger -->
-                    <div>
-                        <button onclick="openProjectModal('modal-purpose-pinoy')"
-                            class="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-xs hover:bg-[#333333] transition-all shadow-sm">
-                            See More
-                        </button>
-                    </div>
-                </article>
-
-                <!-- ITEM 2: iSKOFound Figma UI/UX -->
-                <article class="group flex flex-col justify-between">
-                    <div>
-                        <!-- Mockup Image Box -->
-                        <div
-                            class="w-full aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden mb-6 flex items-center justify-center p-2 relative group-hover:shadow-md transition-shadow">
-                            <img loading="lazy" decoding="async" src="assets/iskofound.png" alt="iSKOFound UI/UX Mockup"
-                                class="w-full h-full object-contain rounded-2xl group-hover:scale-105 transition-transform duration-300">
-                        </div>
-
-                        <!-- Category Pill -->
-                        <div class="mb-3">
-                            <span
-                                class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333] inline-block">
-                                Mobile App / UI/UX Design
-                            </span>
-                        </div>
-
-                        <!-- Title -->
+                    <!-- Title & Tags Row -->
+                    <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
                         <h3
-                            class="text-2xl font-extrabold text-[#111111] mb-3 group-hover:translate-x-1 transition-transform">
+                            class="text-xl sm:text-2xl font-extrabold text-[#111111] group-hover:translate-x-1 transition-transform flex items-center gap-2">
                             iSKOFound
+                            <i
+                                class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity text-[#777777]"></i>
                         </h3>
 
-                        <!-- Tech Stack Pills -->
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Figma</span>
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">UI/UX Research</span>
+                        <!-- Tech Stack & Category Pills with FontAwesome -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-mobile-screen-button text-[#111111]"></i> Mobile App
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-brands fa-figma text-[#F24E1E]"></i> Figma
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-compass-drafting text-[#111111]"></i> UI/UX
+                            </span>
                         </div>
-                    </div>
-
-                    <!-- See More Modal Trigger -->
-                    <div>
-                        <button onclick="openProjectModal('modal-iskofound')"
-                            class="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-xs hover:bg-[#333333] transition-all shadow-sm">
-                            See More
-                        </button>
                     </div>
                 </article>
 
-                <!-- ITEM 3: ePDS Portal -->
-                <article class="group flex flex-col justify-between">
-                    <div>
-                        <!-- Mockup Image Box -->
-                        <div
-                            class="w-full aspect-square bg-[#E6E1D7] rounded-3xl overflow-hidden mb-6 flex items-center justify-center p-2 relative group-hover:shadow-md transition-shadow">
-                            <img loading="lazy" decoding="async" src="assets/epds.png" alt="ePDS Portal Mockup"
-                                class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300">
-                        </div>
+                <!-- ITEM 2: Purpose Pinoy Website (Top Right) -->
+                <article class="group flex flex-col cursor-pointer" onclick="openProjectModal('modal-purpose-pinoy')">
+                    <!-- Mockup Preview Box -->
+                    <div
+                        class="w-full aspect-[4/3] bg-[#E6E1D7] rounded-3xl overflow-hidden p-4 sm:p-6 flex items-center justify-center relative shadow-xs group-hover:shadow-md transition-all duration-300">
+                        <img loading="lazy" decoding="async" src="assets/proj/purppinoy.png" alt="Purpose Pinoy Mockup"
+                            class="w-full h-full object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-500 ease-out">
+                    </div>
 
-                        <!-- Category Pill -->
-                        <div class="mb-3">
-                            <span
-                                class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#E6E1D7] text-[#333333] inline-block">
-                                Full-Stack Web App
-                            </span>
-                        </div>
-
-                        <!-- Title -->
+                    <!-- Title & Tags Row -->
+                    <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
                         <h3
-                            class="text-2xl font-extrabold text-[#111111] mb-3 group-hover:translate-x-1 transition-transform">
-                            ePDS Portal
+                            class="text-xl sm:text-2xl font-extrabold text-[#111111] group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                            Purpose Pinoy
+                            <i
+                                class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity text-[#777777]"></i>
                         </h3>
 
-                        <!-- Tech Stack Pills -->
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">HTML / CSS / JS</span>
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Node.js / Express</span>
-                            <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">MySQL</span>
+                        <!-- Tech Stack & Category Pills with FontAwesome -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-heart text-[#E11D48]"></i> Non-Profit
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-brands fa-css3-alt text-[#38BDF8]"></i> Tailwind
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-brands fa-github text-[#111111]"></i> Git / GitHub
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-cloud text-[#00C7B7]"></i> Netlify
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-shield-halved text-[#F38020]"></i> Cloudflare
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ITEM 3: ePDS Portal (Bottom Centered) -->
+                <article class="group flex flex-col cursor-pointer md:col-span-2 md:w-1/2 md:mx-auto"
+                    onclick="openProjectModal('modal-epds')">
+                    <!-- Mockup Preview Box -->
+                    <div
+                        class="w-full aspect-[16/10] bg-[#E6E1D7] rounded-3xl overflow-hidden p-4 sm:p-6 flex items-center justify-center relative shadow-xs group-hover:shadow-md transition-all duration-300">
+                        <!-- Curved Black Inner Frame -->
+                        <div
+                            class="w-full h-full bg-[#111111] rounded-2xl p-2 sm:p-3 flex items-center justify-center overflow-hidden shadow-md">
+                            <img loading="lazy" decoding="async" src="assets/proj/epds.gif" alt="ePDS Portal Mockup"
+                                class="w-full h-full object-contain rounded-xl group-hover:scale-[1.03] transition-transform duration-500 ease-out">
                         </div>
                     </div>
 
-                    <!-- See More Modal Trigger -->
-                    <div>
-                        <button onclick="openProjectModal('modal-epds')"
-                            class="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-xs hover:bg-[#333333] transition-all shadow-sm">
-                            See More
-                        </button>
+                    <!-- Title & Tags Row -->
+                    <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
+                        <h3
+                            class="text-xl sm:text-2xl font-extrabold text-[#111111] group-hover:translate-x-1 transition-transform flex items-center gap-2">
+                            ePDS Portal
+                            <i
+                                class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity text-[#777777]"></i>
+                        </h3>
+
+                        <!-- Tech Stack & Category Pills with FontAwesome -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-laptop-code text-[#111111]"></i> Full-Stack
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-brands fa-html5 text-[#E34F26]"></i> HTML / CSS / JS
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-brands fa-node-js text-[#5FA04E]"></i> Node.js / Express
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-full bg-[#E6E1D7] text-[#333333] text-xs font-bold inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-database text-[#00758F]"></i> MySQL
+                            </span>
+                        </div>
                     </div>
                 </article>
 
@@ -285,7 +658,7 @@
                 <!-- ROLE ITEM 2 -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <h4 class="text-2xl font-extrabold text-[#111111]">IT Head &amp; FrontEnd Developer</h4>
+                        <h4 class="text-2xl font-extrabold text-[#111111]">IT Head </h4>
                         <p class="text-base text-[#777777] font-medium mt-0.5">Purpose Pinoy</p>
                     </div>
                     <span
@@ -486,27 +859,6 @@
 
 
         <!-- ================================================================= -->
-        <!-- 4. ABOUT SECTION                                                 -->
-        <!-- ================================================================= -->
-        <section id="about" class="px-6 lg:px-16 py-12 max-w-7xl mx-auto">
-            <div class="max-w-3xl">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111111] mb-6">Who is Me?</h2>
-
-                <div class="space-y-4 text-base sm:text-lg text-[#333333] leading-relaxed">
-                    <p>
-                        I believe good software is like good architecture—functional, enduring, and refined down to
-                        its essential form.
-                    </p>
-                    <p>
-                        With a strong emphasis on modern typography, clean code standards, and seamless user
-                        experiences, I build digital products that prioritize speed, clarity, and precision.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ================================================================= -->
         <!-- CONTACT CTA SECTION                                               -->
         <!-- ================================================================= -->
         <section id="contact" class="px-6 lg:px-16 py-24 max-w-7xl mx-auto text-center">
@@ -517,14 +869,14 @@
                 Have a new project, an open role, or just want to connect? My inbox is always open.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4">
                 <a href="mailto:chinadeoro86@gmail.com"
-                    class="w-full sm:w-auto px-8 py-4 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-base hover:bg-[#333333] transition-all shadow-md">
+                    class="w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#111111] text-[#F6F4EE] font-bold text-sm sm:text-base hover:bg-[#333333] transition-all shadow-md">
                     Send an Email
                 </a>
                 <a href="https://docs.google.com/document/d/1XfqsxC9pa2fqTujdYsi4zwqzz6N1YO5khrbL4adXYJo/edit?usp=sharing"
                     target="_blank" rel="noopener noreferrer"
-                    class="w-full sm:w-auto px-8 py-4 rounded-full bg-[#E6E1D7] text-[#111111] font-bold text-base hover:bg-[#BEB8AD]/50 transition-all">
+                    class="w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#E6E1D7] text-[#111111] font-bold text-sm sm:text-base hover:bg-[#BEB8AD]/50 transition-all">
                     Resume
                 </a>
             </div>
@@ -544,10 +896,11 @@
             <div class="flex flex-col items-center">
                 <h5 class="text-xs font-bold uppercase tracking-wider text-[#777777] mb-4 text-center">Navigation</h5>
                 <ul class="space-y-2.5 text-sm font-semibold text-[#111111] flex flex-col items-center">
+                    <li><a href="#about" class="hover:text-[#777777] transition-colors">About</a></li>
                     <li><a href="#projects" class="hover:text-[#777777] transition-colors">Projects</a></li>
                     <li><a href="#experience" class="hover:text-[#777777] transition-colors">Experience</a></li>
                     <li><a href="#graphics" class="hover:text-[#777777] transition-colors">Graphics</a></li>
-                    <li><a href="#about" class="hover:text-[#777777] transition-colors">About</a></li>
+
                 </ul>
             </div>
 
@@ -557,10 +910,10 @@
                 <ul class="space-y-2.5 text-sm font-semibold text-[#111111] flex flex-col items-center">
                     <li><a href="https://github.com/lhycerie" target="_blank" rel="noopener noreferrer"
                             class="hover:text-[#777777] transition-colors flex items-center justify-center gap-1">GitHub
-                            ↗</a></li>
+                        </a></li>
                     <li><a href="https://www.linkedin.com/in/china-de-oro/" target="_blank" rel="noopener noreferrer"
                             class="hover:text-[#777777] transition-colors flex items-center justify-center gap-1">LinkedIn
-                            ↗</a></li>
+                        </a></li>
                 </ul>
             </div>
         </div>
@@ -594,7 +947,7 @@
     <div id="modal-purpose-pinoy" data-lenis-prevent
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
         <div data-lenis-prevent
-            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#BEB8AD]/40 transform scale-95 transition-all duration-300">
+            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative transform scale-95 transition-all duration-300">
             <button onclick="closeProjectModal('modal-purpose-pinoy')"
                 class="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#E6E1D7] flex items-center justify-center font-bold text-[#111111] hover:bg-[#111111] hover:text-[#F6F4EE] transition-all">✕</button>
             <div class="mb-3">
@@ -604,7 +957,7 @@
             </div>
             <h3 class="text-3xl font-extrabold text-[#111111] mb-4">Purpose Pinoy</h3>
             <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[#E6E1D7]">
-                <img src="assets/purpose-pinoy.png" alt="Purpose Pinoy Mockup" class="w-full h-full object-cover">
+                <img src="assets/proj/purppinoy.png" alt="Purpose Pinoy Mockup" class="w-full h-full object-cover">
             </div>
             <div class="flex flex-wrap gap-2 mb-6">
                 <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Tailwind CSS</span>
@@ -612,7 +965,8 @@
                 <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Netlify</span>
                 <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Cloudflare</span>
             </div>
-            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp; Architecture</h4>
+            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp;
+                Architecture</h4>
             <ul class="space-y-3 text-sm text-[#333333] mb-8 leading-relaxed">
                 <li class="flex items-start gap-2.5">
                     <span class="text-[#111111] font-extrabold mt-0.5">•</span>
@@ -637,7 +991,7 @@
     <div id="modal-iskofound" data-lenis-prevent
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
         <div data-lenis-prevent
-            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#BEB8AD]/40 transform scale-95 transition-all duration-300">
+            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative transform scale-95 transition-all duration-300">
             <button onclick="closeProjectModal('modal-iskofound')"
                 class="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#E6E1D7] flex items-center justify-center font-bold text-[#111111] hover:bg-[#111111] hover:text-[#F6F4EE] transition-all">✕</button>
             <div class="mb-3">
@@ -646,14 +1000,19 @@
                     App / UI/UX Design</span>
             </div>
             <h3 class="text-3xl font-extrabold text-[#111111] mb-4">iSKOFound Mobile UI/UX</h3>
-            <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[#E6E1D7]">
-                <img src="assets/iskofound.png" alt="iSKOFound Mockup" class="w-full h-full object-contain">
+            <div
+                class="w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[#E6E1D7] p-3 flex items-center justify-center">
+                <div class="w-full h-full bg-[#111111] rounded-xl p-2 flex items-center justify-center overflow-hidden">
+                    <img src="assets/proj/iskofound.gif" alt="iSKOFound Mockup"
+                        class="w-full h-full object-contain rounded-lg">
+                </div>
             </div>
             <div class="flex flex-wrap gap-2 mb-6">
                 <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Figma</span>
                 <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">UI/UX Research</span>
             </div>
-            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp; Design Process</h4>
+            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp;
+                Design Process</h4>
             <ul class="space-y-3 text-sm text-[#333333] mb-8 leading-relaxed">
                 <li class="flex items-start gap-2.5">
                     <span class="text-[#111111] font-extrabold mt-0.5">•</span>
@@ -679,7 +1038,7 @@
     <div id="modal-epds" data-lenis-prevent
         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
         <div data-lenis-prevent
-            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#BEB8AD]/40 transform scale-95 transition-all duration-300">
+            class="bg-[#F6F4EE] rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative transform scale-95 transition-all duration-300">
             <button onclick="closeProjectModal('modal-epds')"
                 class="absolute top-6 right-6 w-9 h-9 rounded-full bg-[#E6E1D7] flex items-center justify-center font-bold text-[#111111] hover:bg-[#111111] hover:text-[#F6F4EE] transition-all">✕</button>
             <div class="mb-3">
@@ -688,15 +1047,22 @@
                     Web App</span>
             </div>
             <h3 class="text-3xl font-extrabold text-[#111111] mb-4">ePDS Portal</h3>
-            <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[#E6E1D7]">
-                <img src="assets/epds.png" alt="ePDS Portal Mockup" class="w-full h-full object-cover">
+            <div
+                class="w-full aspect-video rounded-2xl overflow-hidden mb-6 bg-[#E6E1D7] p-3 flex items-center justify-center">
+                <div class="w-full h-full bg-[#111111] rounded-xl p-2 flex items-center justify-center overflow-hidden">
+                    <img src="assets/proj/epds.gif" alt="ePDS Portal Mockup"
+                        class="w-full h-full object-contain rounded-lg">
+                </div>
             </div>
             <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">HTML / CSS / JS</span>
-                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Node.js / Express</span>
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">HTML / CSS /
+                    JS</span>
+                <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">Node.js /
+                    Express</span>
                 <span class="px-3 py-1 rounded-full bg-[#E6E1D7] text-[#111111] text-xs font-bold">MySQL</span>
             </div>
-            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp; Full-Stack Architecture</h4>
+            <h4 class="text-xs font-extrabold text-[#777777] uppercase tracking-wider mb-3">Key Responsibilities &amp;
+                Full-Stack Architecture</h4>
             <ul class="space-y-3 text-sm text-[#333333] mb-8 leading-relaxed">
                 <li class="flex items-start gap-2.5">
                     <span class="text-[#111111] font-extrabold mt-0.5">•</span>
@@ -708,7 +1074,8 @@
                 </li>
                 <li class="flex items-start gap-2.5">
                     <span class="text-[#111111] font-extrabold mt-0.5">•</span>
-                    <span>Backend server featuring custom JWT authentication middleware and dynamic binary excel generation.</span>
+                    <span>Backend server featuring custom JWT authentication middleware and dynamic binary excel
+                        generation.</span>
                 </li>
                 <li class="flex items-start gap-2.5">
                     <span class="text-[#111111] font-extrabold mt-0.5">•</span>
@@ -723,6 +1090,28 @@
 
     <!-- Script for interactions -->
     <script>
+        // Mobile Navigation Drawer Toggle Handler
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const panel = document.getElementById('mobile-menu-panel');
+            if (!drawer || !panel) return;
+
+            const isOpen = !drawer.classList.contains('pointer-events-none');
+            if (isOpen) {
+                panel.classList.add('translate-x-full');
+                drawer.classList.remove('opacity-100');
+                drawer.classList.add('opacity-0', 'pointer-events-none');
+                if (typeof lenis !== 'undefined' && lenis) lenis.start();
+                document.body.style.overflow = '';
+            } else {
+                drawer.classList.remove('opacity-0', 'pointer-events-none');
+                drawer.classList.add('opacity-100');
+                panel.classList.remove('translate-x-full');
+                if (typeof lenis !== 'undefined' && lenis) lenis.stop();
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
         // Project Modal Handlers
         function openProjectModal(modalId) {
             const modal = document.getElementById(modalId);
@@ -768,17 +1157,12 @@
 
         // Initialize Lenis Smooth Scroll
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 0.9,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smoothWheel: true,
-            touchMultiplier: 2
+            wheelMultiplier: 1,
+            touchMultiplier: 1.5
         });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
 
         // GSAP ScrollTrigger Integration with Lenis
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -818,7 +1202,360 @@
                     }
                 }
             );
+
+            // Statement Section: Scroll-based word reveal
+            (function buildStatementWords() {
+                const container = document.getElementById('statement-text');
+                if (!container) return;
+                const italicWords = ['clean,', 'intentional', 'modern'];
+                const words = 'Crafting clean, intentional digital products & modern web experiences.'.split(/\s+/).filter(Boolean);
+                container.innerHTML = words.map(word => {
+                    const isItalic = italicWords.includes(word);
+                    return isItalic
+                        ? `<span class="statement-word"><em class="italic">${word}</em></span>`
+                        : `<span class="statement-word">${word}</span>`;
+                }).join(' ');
+
+                const wordEls = container.querySelectorAll('.statement-word');
+                const total = wordEls.length;
+
+                // Single ScrollTrigger for all words
+                ScrollTrigger.create({
+                    trigger: "#statement",
+                    start: "top 55%",
+                    end: "center center",
+                    onUpdate: (self) => {
+                        const p = self.progress;
+                        wordEls.forEach((el, i) => {
+                            const wordProgress = Math.min(1, Math.max(0, (p * total - i) * 1.5));
+                            el.style.opacity = 0.1 + wordProgress * 0.9;
+                        });
+                    }
+                });
+
+                // Craft Section: Cursor Proximity Circle & Brownish Text Hover Effect
+                const statementSection = document.getElementById('statement');
+                const cursorCircle = document.getElementById('craft-cursor-circle');
+                const RADIUS = 130; // 260px diameter circle
+
+                if (statementSection && cursorCircle && window.matchMedia('(pointer: fine)').matches) {
+                    let isHovered = false;
+                    let lastX = -1, lastY = -1;
+
+                    function updateProximity(clientX, clientY) {
+                        cursorCircle.style.left = clientX + 'px';
+                        cursorCircle.style.top = clientY + 'px';
+
+                        wordEls.forEach(el => {
+                            const rect = el.getBoundingClientRect();
+                            const nearestX = Math.max(rect.left, Math.min(clientX, rect.right));
+                            const nearestY = Math.max(rect.top, Math.min(clientY, rect.bottom));
+                            const dist = Math.hypot(clientX - nearestX, clientY - nearestY);
+
+                            if (dist < RADIUS) {
+                                const factor = Math.pow(1 - (dist / RADIUS), 1.2);
+                                // Interpolate from #111111 (17, 17, 17) to warm brownish #a27c56 (162, 124, 86)
+                                const r = Math.round(17 + factor * (162 - 17));
+                                const g = Math.round(17 + factor * (124 - 17));
+                                const b = Math.round(17 + factor * (86 - 17));
+                                el.style.color = `rgb(${r}, ${g}, ${b})`;
+                            } else {
+                                el.style.color = '';
+                            }
+                        });
+                    }
+
+                    statementSection.addEventListener('mouseenter', (e) => {
+                        isHovered = true;
+                        cursorCircle.style.display = 'block';
+                        requestAnimationFrame(() => {
+                            cursorCircle.style.opacity = '1';
+                        });
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                        updateProximity(lastX, lastY);
+                    });
+
+                    statementSection.addEventListener('mousemove', (e) => {
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                        if (!isHovered) {
+                            isHovered = true;
+                            cursorCircle.style.display = 'block';
+                            cursorCircle.style.opacity = '1';
+                        }
+                        updateProximity(lastX, lastY);
+                    });
+
+                    statementSection.addEventListener('mouseleave', () => {
+                        isHovered = false;
+                        cursorCircle.style.opacity = '0';
+                        setTimeout(() => {
+                            if (!isHovered) cursorCircle.style.display = 'none';
+                        }, 300);
+                        wordEls.forEach(el => {
+                            el.style.color = '';
+                        });
+                    });
+
+                    window.addEventListener('scroll', () => {
+                        if (isHovered && lastX >= 0 && lastY >= 0) {
+                            const secRect = statementSection.getBoundingClientRect();
+                            if (lastY >= secRect.top && lastY <= secRect.bottom &&
+                                lastX >= secRect.left && lastX <= secRect.right) {
+                                updateProximity(lastX, lastY);
+                            } else {
+                                isHovered = false;
+                                cursorCircle.style.opacity = '0';
+                                cursorCircle.style.display = 'none';
+                                wordEls.forEach(el => { el.style.color = ''; });
+                            }
+                        }
+                    }, { passive: true });
+                }
+            })();
+
+            // Hero Section: Fade-in animation on load
+            const heroTl = gsap.timeline({ delay: 0.2 });
+            heroTl
+                .to('#hero-name', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0)
+                .fromTo('#hero-greeting', { y: 8 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.3)
+                .fromTo('#hero-role', { y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.5);
+        } else {
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
         }
+
+        // ===== HERO PUZZLE: Draggable Grid Game (5x5 enlarged) =====
+        (function initHeroPuzzle() {
+            const container = document.getElementById('hero-puzzle-grid');
+            const puzzleWrap = document.getElementById('hero-puzzle');
+            if (!container || !puzzleWrap || typeof Draggable === 'undefined') return;
+
+            const CELL = 68;
+            const COLS = 5;
+            const ROWS = 5;
+            const CIRCLE_SIZE = 50;
+            const OFFSET = (CELL - CIRCLE_SIZE) / 2; // 9px centering
+
+            // Generate 3 unique random target cells in the 5x5 grid
+            const targetCells = [];
+            while (targetCells.length < 3) {
+                const r = Math.floor(Math.random() * ROWS);
+                const c = Math.floor(Math.random() * COLS);
+                if (!targetCells.some(t => t.r === r && t.c === c)) {
+                    targetCells.push({ r, c });
+                }
+            }
+
+            // Create dashed target circles
+            targetCells.forEach(t => {
+                const el = document.createElement('div');
+                el.className = 'grid-target';
+                el.style.left = (t.c * CELL + OFFSET) + 'px';
+                el.style.top = (t.r * CELL + OFFSET) + 'px';
+                container.appendChild(el);
+            });
+
+            // Create 3 draggable circles (start below 5x5 grid)
+            const circles = [];
+            const startY = ROWS * CELL + 14;
+            [0, 2, 4].forEach((col) => {
+                const el = document.createElement('div');
+                el.className = 'grid-circle';
+                el.dataset.startCol = String(col);
+                el.dataset.row = '-1';
+                el.dataset.col = String(col);
+                el.style.left = (col * CELL + OFFSET) + 'px';
+                el.style.top = startY + 'px';
+                container.appendChild(el);
+                circles.push(el);
+            });
+
+            let won = false;
+
+            // Check if all 3 targets have a circle on them
+            function checkWin() {
+                if (won) return;
+                const gridRect = container.getBoundingClientRect();
+                const matchedTargets = new Set();
+
+                circles.forEach(circle => {
+                    const cRect = circle.getBoundingClientRect();
+                    const centerX = cRect.left + cRect.width / 2;
+                    const centerY = cRect.top + cRect.height / 2;
+
+                    const relX = centerX - gridRect.left;
+                    const relY = centerY - gridRect.top;
+
+                    // Inside 5x5 grid cells
+                    if (relY >= 0 && relY <= ROWS * CELL && relX >= 0 && relX <= COLS * CELL) {
+                        const col = Math.floor(relX / CELL);
+                        const row = Math.floor(relY / CELL);
+
+                        let isMatched = false;
+                        targetCells.forEach((t, ti) => {
+                            if (t.r === row && t.c === col) {
+                                matchedTargets.add(ti);
+                                isMatched = true;
+                            }
+                        });
+                        circle.classList.toggle('matched', isMatched);
+                    } else {
+                        circle.classList.remove('matched');
+                    }
+                });
+
+                if (matchedTargets.size >= 3) {
+                    won = true;
+                    triggerConfetti();
+                }
+            }
+
+            // Create Draggable for each circle
+            circles.forEach(circle => {
+                Draggable.create(circle, {
+                    type: 'x,y',
+                    bounds: puzzleWrap,
+                    zIndexBoost: false,
+                    snap: {
+                        x: function (endValue) {
+                            const absX = circle.offsetLeft + endValue;
+                            let col = Math.round((absX - OFFSET) / CELL);
+                            col = Math.max(0, Math.min(COLS - 1, col));
+                            return col * CELL + OFFSET - circle.offsetLeft;
+                        },
+                        y: function (endValue) {
+                            const absY = circle.offsetTop + endValue;
+                            if (absY > ROWS * CELL - OFFSET / 2) {
+                                return startY - circle.offsetTop;
+                            }
+                            let row = Math.round((absY - OFFSET) / CELL);
+                            row = Math.max(0, Math.min(ROWS - 1, row));
+                            return row * CELL + OFFSET - circle.offsetTop;
+                        }
+                    },
+                    onDrag: function () {
+                        this.target.classList.remove('matched');
+                    },
+                    onDragEnd: function () {
+                        checkWin();
+                        setTimeout(checkWin, 60);
+                        setTimeout(checkWin, 280);
+                    }
+                });
+            });
+
+            // Fade in puzzle
+            if (typeof gsap !== 'undefined') {
+                gsap.to(puzzleWrap, { opacity: 1, duration: 0.6, delay: 0.8 });
+            }
+        })();
+
+        // Confetti shower effect
+        function triggerConfetti() {
+            const colors = ['#BEB8AD', '#E6E1D7', '#d4a574', '#e8b87d', '#111111', '#777777', '#c4bfb5'];
+
+            if (typeof confetti === 'function') {
+                // Burst 1: From top right puzzle area
+                confetti({
+                    particleCount: 90,
+                    spread: 80,
+                    origin: { x: 0.85, y: 0.3 },
+                    colors: colors,
+                    zIndex: 9999
+                });
+
+                // Burst 2: Full screen celebratory shower
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 160,
+                        spread: 120,
+                        origin: { y: 0.35 },
+                        colors: colors,
+                        zIndex: 9999
+                    });
+                }, 200);
+            } else {
+                runFallbackCanvasConfetti(colors);
+            }
+        }
+
+        // Fallback canvas animation if external script isn't cached
+        function runFallbackCanvasConfetti(colors) {
+            const canvas = document.createElement('canvas');
+            canvas.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;z-index:9999;pointer-events:none;';
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+
+            const pieces = [];
+            for (let i = 0; i < 150; i++) {
+                pieces.push({
+                    x: Math.random() * canvas.width,
+                    y: -20 - Math.random() * 250,
+                    w: 5 + Math.random() * 7,
+                    h: 9 + Math.random() * 12,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vy: 3 + Math.random() * 4,
+                    vx: (Math.random() - 0.5) * 4,
+                    rot: Math.random() * 360,
+                    rotSpd: (Math.random() - 0.5) * 12,
+                    opacity: 1
+                });
+            }
+
+            let frame = 0;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                frame++;
+                let alive = false;
+
+                pieces.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.06;
+                    p.rot += p.rotSpd;
+                    if (frame > 100) p.opacity -= 0.015;
+                    if (p.opacity <= 0 || p.y > canvas.height + 40) return;
+                    alive = true;
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rot * Math.PI / 180);
+                    ctx.globalAlpha = Math.max(0, p.opacity);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    ctx.restore();
+                });
+
+                if (alive && frame < 300) {
+                    requestAnimationFrame(animate);
+                } else {
+                    canvas.remove();
+                }
+            }
+            animate();
+        }
+
+        // Convert GitHub contribution chart blocks into rounded squares
+        (function renderRoundedGithubChart() {
+            const container = document.getElementById('github-chart-container');
+            if (!container) return;
+            fetch('https://ghchart.rshah.org/111111/lhycerie')
+                .then(res => res.text())
+                .then(svgText => {
+                    const roundedSvg = svgText
+                        .replace(/<rect /g, '<rect rx="10" ry="10" ')
+                        .replace(/width="100%"/, 'width="100%" class="w-full h-auto"');
+                    container.innerHTML = roundedSvg;
+                })
+                .catch(() => { });
+        })();
     </script>
 </body>
 

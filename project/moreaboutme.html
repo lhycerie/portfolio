@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More About Me — China De Oro</title>
+    <meta name="description" content="Personal hobbies, interests, music, gaming, and projects by China De Oro.">
+
+    <!-- Manrope Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Lenis Smooth Scroll CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+    <!-- Tailwind CSS v4 Browser Build -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Lenis Smooth Scroll Script -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --color-c1: #111111;
+            --color-c2: #333333;
+            --color-c3: #777777;
+            --color-c4: #BEB8AD;
+            --color-c5: #E6E1D7;
+            --color-c6: #F6F4EE;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--color-c6);
+            color: var(--color-c2);
+        }
+
+        .big-footer-name {
+            font-size: clamp(3rem, 13.5vw, 18rem);
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-[#F6F4EE] text-[#333333] antialiased selection:bg-[#BEB8AD]/40 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navigation Bar -->
+    <header class="fixed top-6 inset-x-0 z-40 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <span class="font-extrabold text-[#111111] text-lg sm:text-xl tracking-tight">cdo.</span>
+            </a>
+
+            <a href="index.html#about"
+                class="px-6 py-2.5 rounded-full bg-[#E6E1D7]/90 backdrop-blur-md text-[#111111] font-bold text-sm hover:bg-[#111111] hover:text-[#F6F4EE] transition-all shadow-sm">
+                ← Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="pt-32 pb-20 px-6 lg:px-16 max-w-7xl mx-auto w-full flex-1">
+
+        <!-- Page Header -->
+        <div class="max-w-3xl mb-12">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111111] tracking-tight mb-4">
+                More About Me
+            </h1>
+            <p class="text-base sm:text-lg text-[#777777] font-medium">
+                Beyond code and design — a peek into my hobbies, interests, music, and side quests.
+            </p>
+        </div>
+
+        <!-- Bento Grid of Hobbies & Interests (Blur Overlays & Full Cover Images) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 max-w-7xl mx-auto">
+
+            <!-- Card 7: Personality / MBTI (Span 3 - INTP-T with intp.png background) -->
+            <div
+                class="lg:col-span-3 rounded-3xl overflow-hidden shadow-xs relative min-h-[140px] sm:min-h-[150px] p-5 sm:p-6 flex flex-col justify-between group hover:shadow-md transition-all duration-300 text-[#F6F4EE]">
+                <!-- Background Image: intp.png -->
+                <div class="absolute inset-0 z-0">
+                    <img src="assets/intp.png" alt="INTP Avatar" class="w-full h-full object-cover" />
+                </div>
+
+                <!-- Dark Gradient Overlay for Readability -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/30 z-5 pointer-events-none">
+                </div>
+
+                <!-- Content over background -->
+                <div class="relative z-10 flex flex-col justify-between h-full">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div
+                            class="w-8 h-8 rounded-lg bg-white/15 backdrop-blur-md flex items-center justify-center text-white text-xs">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white drop-shadow-sm">MBTI</h3>
+                    </div>
+
+                    <div class="mt-auto">
+                        <h4 class="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-sm mb-1">
+                            INTP-T
+                        </h4>
+                        <p class="text-xs text-white/90 font-medium leading-snug drop-shadow-xs">
+                            The Logician — Innovative with a wandering and curious mindset.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Music & Spotify (Span 5 - Medium Height) -->
+            <div
+                class="lg:col-span-5 rounded-3xl overflow-hidden shadow-xs p-5 sm:p-6 flex flex-col justify-between hover:shadow-md transition-all duration-300 bg-gradient-to-br from-[#262422] to-[#111111] text-[#F6F4EE]">
+                <div>
+                    <div class="flex items-center gap-2.5 mb-2">
+                        <div
+                            class="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center text-white text-sm">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white">Music</h3>
+                    </div>
+                    <p class="text-xs text-white/80 font-medium mb-3">
+                        Huge fan of <strong class="text-white">K-Pop</strong>, <strong
+                            class="text-white">Indie</strong>,<strong class="text-white">J-Pop</strong>, and <strong
+                            class="text-white">Pop</strong>.
+                    </p>
+                </div>
+
+                <iframe data-testid="embed-iframe" style="border-radius:16px"
+                    src="https://open.spotify.com/embed/playlist/6Ccp3gZKD673U0xs5KWZOM?utm_source=generator&theme=0&si=45527558c9b64e7b"
+                    width="100%" height="152" frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"
+                    class="shadow-sm w-full"></iframe>
+            </div>
+
+            <!-- Card 1: Japanese Learning (Span 4 - Right Position with Calligraphy Background) -->
+            <div
+                class="lg:col-span-4 rounded-3xl overflow-hidden shadow-xs relative min-h-[140px] sm:min-h-[150px] flex flex-col justify-between p-4 sm:p-5 group hover:shadow-md transition-all duration-300 text-[#F6F4EE]">
+                <!-- Background Image: language.png -->
+                <div class="absolute inset-0 z-0">
+                    <img src="assets/language.png" alt="Japanese Calligraphy" class="w-full h-full object-cover" />
+                </div>
+
+                <!-- Dark Gradient Overlay for Readability -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/40 z-5 pointer-events-none">
+                </div>
+
+                <!-- Content over background -->
+                <div class="relative z-10 flex flex-col justify-between h-full">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="w-8 h-8 rounded-lg bg-white/15 backdrop-blur-md flex items-center justify-center text-base font-black text-white">あ</span>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white drop-shadow-sm">Language</h3>
+                        </div>
+                    </div>
+
+                    <!-- Text floating directly over dark gradient -->
+                    <div class="mt-auto space-y-1 text-left">
+                        <p class="text-xs sm:text-sm font-medium text-white/90 italic drop-shadow-xs">
+                            ひらがなとカタカナは書けるし読めるでも漢字はムズい~
+                        </p>
+                        <p class="text-xs sm:text-sm font-medium text-white/90 italic drop-shadow-xs">
+                            今のところ、暇なときに日本語を勉強しています。
+                        </p>
+                        <p class="text-[11px] sm:text-xs text-white/75 font-medium drop-shadow-xs">
+                            "I can write and read in both Hiragana and Katakana, but Kanji is hard~ For now, I'm
+                            studying
+                            Japanese in my free time."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Anime & Manga Slideshow (Span 7 - Feature with Lycoris Recoil) -->
+            <div
+                class="lg:col-span-7 rounded-3xl overflow-hidden shadow-xs relative min-h-[340px] sm:min-h-[380px] group hover:shadow-md transition-all duration-300 flex flex-col justify-end">
+                <!-- Image Slides -->
+                <div class="absolute inset-0 z-0">
+                    <!-- Slide 1: Gokurakugai -->
+                    <img id="anime-slide-0" src="assets/gokurakugai.jpg" alt="Gokurakugai"
+                        class="anime-slide absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 2: Sousou no Frieren -->
+                    <img id="anime-slide-1" src="assets/frieren.jpg" alt="Sousou no Frieren"
+                        class="anime-slide absolute inset-0 w-full h-full object-cover object-center scale-110 opacity-0 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 3: Apothecary Diaries -->
+                    <img id="anime-slide-2" src="assets/apothecary.png" alt="The Apothecary Diaries"
+                        class="anime-slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 4: Lycoris Recoil -->
+                    <img id="anime-slide-3" src="assets/lycorisrecoil.png" alt="Lycoris Recoil"
+                        class="anime-slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out" />
+                </div>
+
+                <!-- Dark Gradient Overlay for Readability -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-5 pointer-events-none">
+                </div>
+
+                <!-- Text floating directly at bottom over dark gradient -->
+                <div class="relative z-10 p-5 sm:p-7 text-white flex items-end justify-between w-full">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-book-open text-xs text-white/70"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider text-white/70">Anime &amp;
+                                Manga</span>
+                        </div>
+                        <h4 id="anime-title-display"
+                            class="text-lg sm:text-xl font-extrabold text-white drop-shadow-sm">
+                            Gokurakugai (極楽街)
+                        </h4>
+                    </div>
+
+                    <!-- Carousel Indicators -->
+                    <div class="flex items-center gap-1.5 pb-1">
+                        <button onclick="setAnimeSlide(0)" aria-label="Slide 1"
+                            class="anime-dot w-2.5 h-2.5 rounded-full bg-white transition-all cursor-pointer"></button>
+                        <button onclick="setAnimeSlide(1)" aria-label="Slide 2"
+                            class="anime-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                        <button onclick="setAnimeSlide(2)" aria-label="Slide 3"
+                            class="anime-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                        <button onclick="setAnimeSlide(3)" aria-label="Slide 4"
+                            class="anime-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Gaming Slideshow (Span 5 - Nudged Up Pokemon Emerald Image) -->
+            <div
+                class="lg:col-span-5 rounded-3xl overflow-hidden shadow-xs relative min-h-[340px] sm:min-h-[380px] group hover:shadow-md transition-all duration-300 flex flex-col justify-end">
+                <!-- Image Slides -->
+                <div class="absolute inset-0 z-0">
+                    <!-- Slide 1: Genshin Impact -->
+                    <img id="gaming-slide-0" src="assets/genshin.jpg" alt="Genshin Impact"
+                        class="gaming-slide absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 2: Chess Board -->
+                    <img id="gaming-slide-1" src="assets/chess.jpg" alt="Chess"
+                        class="gaming-slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 3: Pokemon Emerald (Position Nudged Up) -->
+                    <img id="gaming-slide-2" src="assets/pokemon.jpg" alt="Pokemon Emerald"
+                        class="gaming-slide absolute inset-0 w-full h-full object-cover object-[50%_20%] opacity-0 transition-opacity duration-700 ease-in-out" />
+                </div>
+
+                <!-- Dark Gradient Overlay for Readability -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-5 pointer-events-none">
+                </div>
+
+                <!-- Text floating directly at bottom over dark gradient -->
+                <div class="relative z-10 p-5 sm:p-7 text-white space-y-2.5 w-full">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <i class="fa-solid fa-gamepad text-xs text-white/70"></i>
+                                <span class="text-xs font-bold uppercase tracking-wider text-white/70">Gaming</span>
+                            </div>
+                            <h4 id="gaming-title-display"
+                                class="text-base sm:text-lg font-extrabold text-white drop-shadow-sm leading-snug">
+                                Genshin Impact (AR60 Adventurer)
+                            </h4>
+                        </div>
+                        <!-- Carousel Indicators -->
+                        <div class="flex items-center gap-1.5 pt-1">
+                            <button onclick="setGamingSlide(0)" aria-label="Slide 1"
+                                class="gaming-dot w-2.5 h-2.5 rounded-full bg-white transition-all cursor-pointer"></button>
+                            <button onclick="setGamingSlide(1)" aria-label="Slide 2"
+                                class="gaming-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                            <button onclick="setGamingSlide(2)" aria-label="Slide 3"
+                                class="gaming-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                        </div>
+                    </div>
+
+                    <div class="pt-1 flex items-center justify-start flex-wrap gap-2">
+                        <a href="https://www.chess.com/member/kleshie" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#111111] hover:bg-white/80 transition-all text-xs font-bold shadow-xs">
+                            <i class="fa-solid fa-chess-knight text-xs"></i>
+                            <span>Chess.com</span>
+                        </a>
+                        <a href="https://akasha.cv/profile/897903926?build=373e91f92591a697f6480a7e48ada377"
+                            target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#111111] hover:bg-white/80 transition-all text-xs font-bold shadow-xs">
+                            <i class="fa-solid fa-shield-halved text-xs"></i>
+                            <span>Akasha</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Reading & Books (Span 4) -->
+            <div
+                class="lg:col-span-4 rounded-3xl overflow-hidden shadow-xs relative min-h-[260px] sm:min-h-[280px] p-5 sm:p-6 flex flex-col justify-between group hover:shadow-md transition-all duration-300 text-[#F6F4EE]">
+                <!-- Background Image: books.png -->
+                <div class="absolute inset-0 z-0">
+                    <img src="assets/books.png" alt="Reading & Books Background" class="w-full h-full object-cover" />
+                </div>
+
+                <!-- Dark Gradient Overlay for Readability -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/40 z-5 pointer-events-none">
+                </div>
+
+                <!-- Content over background -->
+                <div class="relative z-10 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-2">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-white/15 backdrop-blur-md flex items-center justify-center text-white text-sm">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white drop-shadow-sm">Reading &amp; Books
+                            </h3>
+                        </div>
+
+                        <p class="text-xs text-white/90 font-medium mb-2 drop-shadow-xs">
+                            Reading books is one of my favorite hobbies. Top reads:
+                        </p>
+
+                        <div class="flex flex-wrap gap-1.5">
+                            <span
+                                class="px-2.5 py-1 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 text-xs font-bold text-white flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-hat-wizard text-white/70 text-[10px]"></i> Harry Potter
+                            </span>
+                            <span
+                                class="px-2.5 py-1 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 text-xs font-bold text-white flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-fire text-white/70 text-[10px]"></i> Fahrenheit 451
+                            </span>
+                            <span
+                                class="px-2.5 py-1 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 text-xs font-bold text-white flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-eye text-white/70 text-[10px]"></i> 1984
+                            </span>
+                            <span
+                                class="px-2.5 py-1 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 text-xs font-bold text-white flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-magnifying-glass text-white/70 text-[10px]"></i> Alice Network
+                            </span>
+                            <span
+                                class="px-2.5 py-1 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 text-xs font-bold text-white flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-house text-white/70 text-[10px]"></i> Miss Peregrine
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex items-center justify-start">
+                        <a href="https://www.goodreads.com/user/show/190427634" target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#111111] hover:bg-white/80 transition-all text-xs font-bold shadow-xs">
+                            <i class="fa-brands fa-goodreads-g text-xs"></i>
+                            <span>Goodreads</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8: Movies & Series Slideshow (Span 4 - Middle position between Books & Electronics) -->
+            <div
+                class="lg:col-span-4 rounded-3xl overflow-hidden shadow-xs relative min-h-[260px] sm:min-h-[280px] group hover:shadow-md transition-all duration-300 flex flex-col justify-end">
+                <!-- Image Slides -->
+                <div class="absolute inset-0 z-0">
+                    <!-- Slide 1: Interstellar -->
+                    <img id="movies-slide-0" src="assets/interstellar.jpg" alt="Interstellar"
+                        class="movies-slide absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 2: The Imitation Game -->
+                    <img id="movies-slide-1" src="assets/imitation.jpg" alt="The Imitation Game"
+                        class="movies-slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 3: The Umbrella Academy -->
+                    <img id="movies-slide-2" src="assets/umbrella.png" alt="The Umbrella Academy"
+                        class="movies-slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 4: Stranger Things -->
+                    <img id="movies-slide-3" src="assets/stranger.jpg" alt="Stranger Things"
+                        class="movies-slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 5: Twinkling Watermelon -->
+                    <img id="movies-slide-4" src="assets/watermelon.jpg" alt="Twinkling Watermelon"
+                        class="movies-slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out" />
+                    <!-- Slide 6: Alchemy of Souls -->
+                    <img id="movies-slide-5" src="assets/alchemy.jpg" alt="Alchemy of Souls"
+                        class="movies-slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out" />
+                </div>
+
+                <!-- Dark Gradient Overlay for Readability -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-5 pointer-events-none">
+                </div>
+
+                <!-- Text floating directly at bottom over dark gradient -->
+                <div class="relative z-10 p-5 sm:p-6 text-white flex items-end justify-between w-full">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-film text-xs text-white/70"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider text-white/70">Movies &amp;
+                                Series</span>
+                        </div>
+                        <h4 id="movies-title-display"
+                            class="text-base sm:text-lg font-extrabold text-white drop-shadow-sm leading-snug">
+                            Interstellar
+                        </h4>
+                    </div>
+
+                    <!-- Carousel Indicators -->
+                    <div class="flex items-center gap-1.5 pb-1">
+                        <button onclick="setMoviesSlide(0)" aria-label="Slide 1"
+                            class="movies-dot w-2 h-2 rounded-full bg-white transition-all cursor-pointer"></button>
+                        <button onclick="setMoviesSlide(1)" aria-label="Slide 2"
+                            class="movies-dot w-2 h-2 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                        <button onclick="setMoviesSlide(2)" aria-label="Slide 3"
+                            class="movies-dot w-2 h-2 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                        <button onclick="setMoviesSlide(3)" aria-label="Slide 4"
+                            class="movies-dot w-2 h-2 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                        <button onclick="setMoviesSlide(4)" aria-label="Slide 5"
+                            class="movies-dot w-2 h-2 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                        <button onclick="setMoviesSlide(5)" aria-label="Slide 6"
+                            class="movies-dot w-2 h-2 rounded-full bg-white/40 transition-all cursor-pointer"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Electronics & Hardware (Span 4) -->
+            <div
+                class="lg:col-span-4 rounded-3xl overflow-hidden shadow-xs relative min-h-[260px] sm:min-h-[280px] p-5 sm:p-6 flex flex-col justify-between group hover:shadow-md transition-all duration-300 text-[#F6F4EE]">
+                <!-- Background Image: electronics.png -->
+                <div class="absolute inset-0 z-0">
+                    <img src="assets/electronics.png" alt="Electronics Project" class="w-full h-full object-cover" />
+                </div>
+
+                <!-- Dark Gradient Overlay for Readability -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/30 z-5 pointer-events-none">
+                </div>
+
+                <!-- Content over background -->
+                <div class="relative z-10 flex flex-col justify-between h-full">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2.5">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-white/15 backdrop-blur-md flex items-center justify-center text-white text-sm">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white drop-shadow-sm">IoT &amp;
+                                Electronics</h3>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto space-y-2.5">
+                        <p class="text-xs sm:text-sm text-white/90 leading-relaxed font-medium drop-shadow-xs">
+                            Of course, electronics! As the final requirement for my high school—I developed an <strong
+                                class="text-white">automatic plant watering system</strong> using <strong
+                                class="text-white">ESP8266</strong>.
+                        </p>
+
+                        <div class="flex items-center justify-start">
+                            <a href="https://github.com/lhycerie/YL69-Soil-Moisture-Sensor-Testing-ESP8266"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#111111] hover:bg-white/80 transition-all text-xs font-bold shadow-xs">
+                                <i class="fa-brands fa-github text-xs"></i>
+                                <span>ESP8266 Repo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ================================================================= -->
+    <!-- FOOTER                                                            -->
+    <!-- ================================================================= -->
+    <footer class="bg-[#E6E1D7] pt-16 pb-8 px-6 lg:px-16 flex flex-col justify-between overflow-hidden">
+
+        <!-- Top Footer Navigation & Socials -->
+        <div
+            class="max-w-7xl w-full mx-auto flex flex-row justify-center items-start gap-16 sm:gap-32 mb-16 text-center">
+            <!-- Column 1: Navigation -->
+            <div class="flex flex-col items-center">
+                <h5 class="text-xs font-bold uppercase tracking-wider text-[#777777] mb-4 text-center">Navigation</h5>
+                <ul class="space-y-2.5 text-sm font-semibold text-[#111111] flex flex-col items-center">
+                    <li><a href="index.html#about" class="hover:text-[#777777] transition-colors">About</a></li>
+                    <li><a href="index.html#projects" class="hover:text-[#777777] transition-colors">Projects</a></li>
+                    <li><a href="index.html#experience" class="hover:text-[#777777] transition-colors">Experience</a>
+                    </li>
+                    <li><a href="index.html#graphics" class="hover:text-[#777777] transition-colors">Graphics</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 2: Social Links -->
+            <div class="flex flex-col items-center">
+                <h5 class="text-xs font-bold uppercase tracking-wider text-[#777777] mb-4 text-center">Social</h5>
+                <ul class="space-y-2.5 text-sm font-semibold text-[#111111] flex flex-col items-center">
+                    <li><a href="https://github.com/lhycerie" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-[#777777] transition-colors flex items-center justify-center gap-1">GitHub</a>
+                    </li>
+                    <li><a href="https://www.linkedin.com/in/china-de-oro/" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-[#777777] transition-colors flex items-center justify-center gap-1">LinkedIn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer wordmark -->
+        <div class="w-full text-center pt-8 pb-4 select-none overflow-hidden">
+            <h1
+                class="big-footer-name font-black tracking-tighter text-[#111111] leading-none whitespace-nowrap lowercase">
+                china de oro
+            </h1>
+        </div>
+
+        <!-- Copyright Bar -->
+        <div
+            class="max-w-7xl w-full mx-auto flex items-center justify-center pt-6 text-xs font-mono text-[#777777] text-center">
+            <span>&copy; 2026 China De Oro. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Slideshow Controllers -->
+    <script>
+        // Anime Slideshow Controller
+        const animeTitles = [
+            "Gokurakugai (極楽街)",
+            "Sousou no Frieren (葬送のフリーレン)",
+            "The Apothecary Diaries (薬屋のひとりごと)",
+            "Lycoris Recoil (リコリス・リコイル)"
+        ];
+        let currentAnimeIndex = 0;
+        let animeTimer;
+
+        function setAnimeSlide(index) {
+            currentAnimeIndex = index;
+            const slides = document.querySelectorAll('.anime-slide');
+            const dots = document.querySelectorAll('.anime-dot');
+            const titleDisplay = document.getElementById('anime-title-display');
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('opacity-100', i === index);
+                slide.classList.toggle('opacity-0', i !== index);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-white', i === index);
+                dot.classList.toggle('bg-white/40', i !== index);
+            });
+
+            if (titleDisplay) {
+                titleDisplay.textContent = animeTitles[index];
+            }
+
+            resetAnimeTimer();
+        }
+
+        function nextAnimeSlide() {
+            setAnimeSlide((currentAnimeIndex + 1) % animeTitles.length);
+        }
+
+        function resetAnimeTimer() {
+            clearInterval(animeTimer);
+            animeTimer = setInterval(nextAnimeSlide, 3500);
+        }
+
+        // Gaming Slideshow Controller
+        const gamingTitles = [
+            "Genshin Impact (AR60 Adventurer)",
+            "Chess.com",
+            "Pokémon Emerald & Crystal Version"
+        ];
+        let currentGamingIndex = 0;
+        let gamingTimer;
+
+        function setGamingSlide(index) {
+            currentGamingIndex = index;
+            const slides = document.querySelectorAll('.gaming-slide');
+            const dots = document.querySelectorAll('.gaming-dot');
+            const titleDisplay = document.getElementById('gaming-title-display');
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('opacity-100', i === index);
+                slide.classList.toggle('opacity-0', i !== index);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-white', i === index);
+                dot.classList.toggle('bg-white/40', i !== index);
+            });
+
+            if (titleDisplay) {
+                titleDisplay.textContent = gamingTitles[index];
+            }
+
+            resetGamingTimer();
+        }
+
+        function nextGamingSlide() {
+            setGamingSlide((currentGamingIndex + 1) % gamingTitles.length);
+        }
+
+        function resetGamingTimer() {
+            clearInterval(gamingTimer);
+            gamingTimer = setInterval(nextGamingSlide, 4000);
+        }
+
+        // Movies & Series Slideshow Controller
+        const moviesTitles = [
+            "Interstellar",
+            "The Imitation Game",
+            "The Umbrella Academy",
+            "Stranger Things",
+            "Twinkling Watermelon",
+            "Alchemy of Souls (환혼)"
+        ];
+        let currentMoviesIndex = 0;
+        let moviesTimer;
+
+        function setMoviesSlide(index) {
+            currentMoviesIndex = index;
+            const slides = document.querySelectorAll('.movies-slide');
+            const dots = document.querySelectorAll('.movies-dot');
+            const titleDisplay = document.getElementById('movies-title-display');
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('opacity-100', i === index);
+                slide.classList.toggle('opacity-0', i !== index);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-white', i === index);
+                dot.classList.toggle('bg-white/40', i !== index);
+            });
+
+            if (titleDisplay) {
+                titleDisplay.textContent = moviesTitles[index];
+            }
+
+            resetMoviesTimer();
+        }
+
+        function nextMoviesSlide() {
+            setMoviesSlide((currentMoviesIndex + 1) % moviesTitles.length);
+        }
+
+        function resetMoviesTimer() {
+            clearInterval(moviesTimer);
+            moviesTimer = setInterval(nextMoviesSlide, 3800);
+        }
+
+        // Initialize slideshow timers on load
+        document.addEventListener('DOMContentLoaded', () => {
+            resetAnimeTimer();
+            resetGamingTimer();
+            resetMoviesTimer();
+        });
+    </script>
+</body>
+
+</html>
